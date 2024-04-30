@@ -1,7 +1,11 @@
 package main
 
-import "main/tcp"
+import (
+	"main/flags"
+	"main/tcp"
+)
 
 func main() {
-	tcp.NewTcpServer("127.0.0.1", "8006").Start()
+	cmdFlags := flags.ParseFlags()
+	tcp.NewTcpServer(cmdFlags.Ip, cmdFlags.Port).Start()
 }
