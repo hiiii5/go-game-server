@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	CREATE_ENTITY_BYTE_SIZE = 32
+	CREATE_ENTITY_BYTE_SIZE = 36
 )
 
 type CreateEntityCommand struct {
@@ -31,6 +31,7 @@ func (cec CreateEntityCommand) Parse(data []byte) (Command, error) {
 	y := net.Float64FromBytes(nd.Data[8:16])
 	z := net.Float64FromBytes(nd.Data[16:24])
 	speed := net.Float64FromBytes(nd.Data[24:32])
+	health := net.Float32FromBytes(nd.Data[32:36])
 
-	return CreateEntityCommand{Version: int(nd.Version), Entity: model.Entity{Position: model.Vector{X: x, Y: y, Z: z}, MoveSpeed: speed}}, nil
+	return CreateEntityCommand{Version: int(nd.Version), Entity: model.Entity{Position: model.Vector{X: x, Y: y, Z: z}, MoveSpeed: speed, Health: health}}, nil
 }

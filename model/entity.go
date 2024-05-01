@@ -11,6 +11,7 @@ type Vector struct {
 type Entity struct {
 	Position  Vector
 	MoveSpeed float64
+	Health    float32
 	// Do not modify directly
 	Id int
 }

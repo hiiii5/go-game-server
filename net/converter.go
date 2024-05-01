@@ -57,6 +57,18 @@ func Int32ToBytes(i int32) []byte {
 	return bytes
 }
 
+func Float32FromBytes(bytes []byte) float32 {
+	bits := binary.LittleEndian.Uint32(bytes)
+	return math.Float32frombits(bits)
+}
+
+func Float32ToBytes(f float32) []byte {
+	bits := math.Float32bits(f)
+	bytes := make([]byte, 4)
+	binary.LittleEndian.PutUint32(bytes, bits)
+	return bytes
+}
+
 func Float64FromBytes(bytes []byte) float64 {
 	bits := binary.LittleEndian.Uint64(bytes)
 	return math.Float64frombits(bits)

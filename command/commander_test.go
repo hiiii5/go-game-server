@@ -15,6 +15,7 @@ func Test_Commander_ExecuteCommand(t *testing.T) {
 		posY := float64(6.0)
 		posZ := float64(7.0)
 		moveSpeed := float64(4.5)
+		health := float32(100.0)
 
 		// Set data in network byte order
 		var data []byte
@@ -22,6 +23,7 @@ func Test_Commander_ExecuteCommand(t *testing.T) {
 		data = append(data, net.Float64ToBytes(posY)...)
 		data = append(data, net.Float64ToBytes(posZ)...)
 		data = append(data, net.Float64ToBytes(moveSpeed)...)
+		data = append(data, net.Float32ToBytes(health)...)
 
 		nd := net.NetData{Version: byte(version), Id: byte(id), Data: data}
 		bytes := nd.Pack()
